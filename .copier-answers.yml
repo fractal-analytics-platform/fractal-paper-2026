@@ -1,0 +1,12 @@
+# This file is managed by Copier; DO NOT EDIT OR REMOVE.
+_commit: v0.4.1
+_src_path: https://github.com/Quantco/copier-template-python-open-source
+add_autobump_workflow: true
+author_email: joel.luethi@uzh.ch
+author_name: Joel Luethi
+github_url: https://github.com/jluethi/fractal-paper-2026
+github_user: jluethi
+minimal_python_version: py311
+project_short_description: Fractal paper supplementary code
+project_slug: fractal-paper-2026
+use_devcontainer: true
