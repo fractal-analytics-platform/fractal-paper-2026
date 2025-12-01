@@ -15,9 +15,9 @@ classifiers = [
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
 ]
-requires-python = ">=3.11"
+requires-python = ">=3.11, <3.14"
 readme = "README.md"
-dependencies = []
+dependencies = ["ngio >=0.4.0", "ipykernel"]
 
 [project.urls]
 repository = "https://github.com/jluethi/fractal-paper-2026"
@@ -54,11 +54,6 @@ select = [
 quote-style = "double"
 indent-style = "space"
 
-[tool.mypy]
-python_version = '3.11'
-no_implicit_optional = true
-check_untyped_defs = true
-
 # If you run into `missing library stubs or py.typed marker` errors
 # and no stubs are available for this library, you can add an override
 # to ignore the missing imports.
@@ -68,3 +63,68 @@ check_untyped_defs = true
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+[tool.pixi.workspace]
+name = "fractal-paper-2026"
+channels = ["conda-forge"]
+platforms = ["osx-arm64", "osx-64", "linux-64", "win-64"]
+
+[tool.pixi.dependencies]
+python = ">=3.11, <3.14"
+
+[tool.pixi.host-dependencies]
+pip = "*"
+setuptools = ">=61"
+setuptools-scm = "*"
+
+[tool.pixi.tasks]
+postinstall = "pip install --no-build-isolation --no-deps --disable-pip-version-check -e ."
+
+[tool.pixi.feature.test.dependencies]
+pytest = ">=6"
+pytest-cov = "*"
+
+[tool.pixi.feature.test.tasks]
+test = "pytest"
+test-coverage = "pytest --cov=fractal_paper_2026 --cov-report=xml --cov-report=term-missing"
+
+[tool.pixi.feature.build.dependencies]
+python-build = "*"
+twine = "*"
+wheel = "*"
+
+[tool.pixi.feature.build.tasks]
+build-wheel = "python -m build --no-isolation ."
+check-wheel = "twine check dist/*"
+
+[tool.pixi.feature.lint.dependencies]
+pre-commit = "*"
+insert-license-header = "*"
+docformatter = "*"
+ruff = "*"
+prettier = "*"
+taplo = "*"
+
+[tool.pixi.feature.lint.tasks]
+pre-commit-install = "pre-commit install"
+pre-commit-run = "pre-commit run -a"
+
+[tool.pixi.feature.py311.dependencies]
+python = "3.11.*"
+
+[tool.pixi.feature.py312.dependencies]
+python = "3.12.*"
+
+[tool.pixi.feature.py313.dependencies]
+python = "3.13.*"
+
+[tool.pixi.environments]
+default = ["test"]
+py311 = ["py311", "test"]
+py312 = ["py312", "test"]
+py313 = ["py313", "test"]
+build = ["build"]
+lint = { features = ["lint"], no-default-feature = true }
+
+[tool.pixi.pypi-dependencies]
+fractal-paper-2026 = { path = ".", editable = true }
