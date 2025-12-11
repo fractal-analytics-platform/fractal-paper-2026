@@ -71,8 +71,6 @@ platforms = ["osx-arm64", "osx-64", "linux-64", "win-64"]
 
 [tool.pixi.dependencies]
 python = ">=3.11, <3.14"
-
-[tool.pixi.host-dependencies]
 pip = "*"
 setuptools = ">=61"
 setuptools-scm = "*"
