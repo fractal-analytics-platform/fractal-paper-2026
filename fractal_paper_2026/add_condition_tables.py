@@ -82,7 +82,7 @@ plate_container.add_table(
     overwrite=True,
 )
 
-condition_table_days = ConditionTable(df)
+condition_table_days = ConditionTable(df_days)
 plate_container = ngio.open_ome_zarr_plate(plate_url)
 plate_container.add_table(
     name="differentiation_timepoints",
