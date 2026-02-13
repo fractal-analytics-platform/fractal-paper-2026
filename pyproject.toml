@@ -17,7 +17,19 @@ classifiers = [
 ]
 requires-python = ">=3.11, <3.14"
 readme = "README.md"
-dependencies = ["ngio >=0.4.0", "ipykernel"]
+dependencies = [
+  "ngio ==0.4.6",
+  "ipykernel",
+  "umap-learn",
+  "scikit-learn",
+  "matplotlib",
+  "seaborn",
+  "pandas",
+  "numpy",
+  "scipy",
+  "tqdm",
+  "ipywidgets",
+]
 
 [project.urls]
 repository = "https://github.com/jluethi/fractal-paper-2026"
