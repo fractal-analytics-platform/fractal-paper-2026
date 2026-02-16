@@ -1,0 +1,128 @@
+{
+  "name": "10x-CyQuant",
+  "description": null,
+  "task_list": [
+    {
+      "meta_non_parallel": {
+        "cpus_per_task": 1,
+        "mem": 4000
+      },
+      "meta_parallel": null,
+      "args_non_parallel": {
+        "compute": true,
+        "img_paths": [
+          "/path/to/input_data/kispi10_benchmark/Images"
+        ],
+        "overwrite": true,
+        "coarsening_xy": 2,
+        "omero_channels": [
+          {
+            "label": "CyQuant",
+            "active": true,
+            "wavelength_id": "525"
+          }
+        ]
+      },
+      "args_parallel": null,
+      "type_filters": {},
+      "description": null,
+      "alias": null,
+      "task": {
+        "pkg_name": "operetta-compose",
+        "version": "0.2.14",
+        "name": "Harmony to OME-Zarr"
+      }
+    },
+    {
+      "meta_non_parallel": null,
+      "meta_parallel": {
+        "cpus_per_task": 1,
+        "mem": 3500,
+        "needs_gpu": false
+      },
+      "args_non_parallel": null,
+      "args_parallel": {
+        "level": 0,
+        "scale": 1,
+        "channel": {
+          "wavelength_id": "525"
+        },
+        "overwrite": false,
+        "roi_table": "FOV_ROI_table",
+        "label_name": "nuclei",
+        "stardist_model": "2D_versatile_fluo"
+      },
+      "type_filters": {},
+      "description": null,
+      "alias": null,
+      "task": {
+        "pkg_name": "operetta-compose",
+        "version": "0.2.14",
+        "name": "Stardist segmentation"
+      }
+    },
+    {
+      "meta_non_parallel": null,
+      "meta_parallel": {
+        "cpus_per_task": 1,
+        "mem": 4000
+      },
+      "args_non_parallel": null,
+      "args_parallel": {
+        "level": 0,
+        "overwrite": false,
+        "label_name": "nuclei",
+        "table_name": "regionprops"
+      },
+      "type_filters": {},
+      "description": null,
+      "alias": null,
+      "task": {
+        "pkg_name": "operetta-compose",
+        "version": "0.2.14",
+        "name": "Regionprops measurement"
+      }
+    },
+    {
+      "meta_non_parallel": null,
+      "meta_parallel": {
+        "cpus_per_task": 1,
+        "mem": 4000
+      },
+      "args_non_parallel": null,
+      "args_parallel": {
+        "table_name": "regionprops",
+        "classifier_path": "/path/to/input_data/kispi10_benchmark/BVC-test-data-CyQ-classifier"
+      },
+      "type_filters": {},
+      "description": null,
+      "alias": null,
+      "task": {
+        "pkg_name": "operetta-compose",
+        "version": "0.2.14",
+        "name": "Feature classification"
+      }
+    },
+    {
+      "meta_non_parallel": null,
+      "meta_parallel": {
+        "cpus_per_task": 1,
+        "mem": 4000
+      },
+      "args_non_parallel": null,
+      "args_parallel": {
+        "overwrite": false,
+        "layout_path": "/path/to/input_data/kispi10_benchmark/Assaylayout-CyQ-H-SytoxR.csv",
+        "condition_name": "condition"
+      },
+      "type_filters": {},
+      "description": null,
+      "alias": null,
+      "task": {
+        "pkg_name": "operetta-compose",
+        "version": "0.2.14",
+        "name": "Condition registration"
+      }
+    }
+  ]
+}
