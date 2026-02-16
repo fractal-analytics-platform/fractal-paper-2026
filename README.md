@@ -17,5 +17,4 @@ cd fractal-paper-2026
 
 pixi run pre-commit-install
 pixi run postinstall
-pixi run test
 ```
