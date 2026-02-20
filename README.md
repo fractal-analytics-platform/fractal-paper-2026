@@ -8,6 +8,10 @@ Code for quality-control, analysis and plotting is available in subfolders for r
 
 ## Installation
 
+### Python notebooks
+
+The default pixi environment covers all Python-based notebooks.
+
 This project is managed by [pixi](https://pixi.sh).
 You can install the package in development mode using:
 
@@ -18,4 +22,12 @@ cd fractal-paper-2026
 pixi run pre-commit-install
 pixi run postinstall
 pixi run test
+```
+
+### R notebooks (Drug Response Profiling figure)
+
+`fractal_paper_2026/drp_analysis/Fig_DRP.qmd` is an R/Quarto notebook. Its dependencies (R, Quarto, and all required R packages) are managed in a separate pixi environment so they don't interfere with the Python setup:
+
+```bash
+pixi run -e drp-analysis render-drp
 ```
