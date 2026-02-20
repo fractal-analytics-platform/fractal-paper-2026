@@ -3,8 +3,9 @@
 # Figure DRP
 
 Image-based drug response profiling (DRP) of a patient-derived xenograft
-(PDX) quantified from an [OME-Zarr
-dataset](https://zenodo.org/records/18506825) using Fractal.
+(PDX) quantified from an OME-Zarr dataset generated with the drp_workflow.json 
+(found in fractal_paper_2026/workflows/drp_workflow.json) using Fractal based 
+on [this input dataset](https://zenodo.org/records/18506825).
 
 ## Setup
 
