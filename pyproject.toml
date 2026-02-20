@@ -29,6 +29,10 @@ dependencies = [
   "scipy",
   "tqdm",
   "ipywidgets",
+  "napari[all]",
+  "scanpy",
+  "umap-learn",
+  
 ]
 
 [project.urls]
@@ -86,6 +90,8 @@ python = ">=3.11, <3.14"
 pip = "*"
 setuptools = ">=61"
 setuptools-scm = "*"
+ipykernel = ">=7.2.0,<8"
+pillow = ">=12.1.1,<13"
 
 [tool.pixi.tasks]
 postinstall = "pip install --no-build-isolation --no-deps --disable-pip-version-check -e ."
