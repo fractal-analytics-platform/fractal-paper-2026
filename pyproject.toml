@@ -29,7 +29,7 @@ dependencies = [
   "scipy",
   "tqdm",
   "ipywidgets",
-  "python-dotenv"
+  "python-dotenv",
 ]
 
 [project.urls]
