@@ -7110,8 +7110,8 @@ packages:
   requires_python: '>=3.10'
 - pypi: .
   name: fractal-paper-2026
-  version: 0.0.post19+gfd66d99c7
-  sha256: ad67c66126558379282a2211f37136ff2ca9b96b88999d5d5afe9733adafd0a6
+  version: 0.0.post21+g8932a18a2
+  sha256: 894bb8367a8f74b726546d2b3a5c1904abff173872ff6cba222f703e42682587
   requires_dist:
   - ngio==0.4.6
   - ipykernel
