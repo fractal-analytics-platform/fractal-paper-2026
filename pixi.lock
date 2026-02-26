@@ -12910,8 +12910,8 @@ packages:
   timestamp: 1765632913315
 - pypi: ./
   name: fractal-paper-2026
-  version: 0.0.1.post38+ge64f01db2.d20260226
-  sha256: 50580b0c0a14e4f1d03460799ed93ad5dd8777ce68c44a6afba2089e74f34000
+  version: 0.0.1.post39+g183be48ec.d20260226
+  sha256: c12678ea44cfa6856a5e82a44e7f4d2e8c7b85e96170dbfb5bc8ae727ca4a56e
   requires_dist:
   - ngio==0.4.6
   - ipykernel

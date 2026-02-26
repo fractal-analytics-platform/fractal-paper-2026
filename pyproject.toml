@@ -11,6 +11,7 @@ authors = [
   { name = "Joel Luethi", email = "joel.luethi@uzh.ch" },
   { name = "Ruth Hornbachner", email = "ruth.hornbachner@uzh.ch" },
   { name = "Fabio Steffen", email = "fabio.steffen@uzh.ch" },
+  { name = "Max Hess", email = "max.hess@fmi.ch" },
 ]
 dynamic = ["version"]
 classifiers = [
