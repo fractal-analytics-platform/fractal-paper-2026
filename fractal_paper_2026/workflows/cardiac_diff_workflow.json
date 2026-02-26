@@ -16,7 +16,7 @@
         "num_levels": 5,
         "acquisitions": {
           "0": {
-            "image_dir": "/path/to/23_well_plate_input/cycle1/images_renamed",
+            "image_dir": "/path/to/cycle1/images_renamed",
             "allowed_channels": [
               {
                 "color": "00FFFF",
@@ -57,7 +57,7 @@
             ]
           },
           "1": {
-            "image_dir": "/path/to/23_well_plate_input/cycle2/images_renamed",
+            "image_dir": "/path/to/cycle2/images_renamed",
             "allowed_channels": [
               {
                 "color": "00FFFF",
@@ -98,7 +98,7 @@
             ]
           },
           "2": {
-            "image_dir": "/path/to/23_well_plate_input/cycle3/images_renamed",
+            "image_dir": "/path/to/cycle3/images_renamed",
             "allowed_channels": [
               {
                 "color": "00FFFF",
@@ -139,7 +139,7 @@
             ]
           },
           "3": {
-            "image_dir": "/path/to/23_well_plate_input/cycle5/images_renamed",
+            "image_dir": "/path/to/cycle5/images_renamed",
             "allowed_channels": [
               {
                 "color": "00FFFF",
@@ -180,7 +180,7 @@
             ]
           },
           "4": {
-            "image_dir": "/path/to/23_well_plate_input/cycle6/images_renamed",
+            "image_dir": "/path/to/cycle6/images_renamed",
             "allowed_channels": [
               {
                 "color": "00FFFF",
@@ -221,7 +221,7 @@
             ]
           },
           "5": {
-            "image_dir": "/path/to/23_well_plate_input/cycle9/images_renamed",
+            "image_dir": "/path/to/cycle9/images_renamed",
             "allowed_channels": [
               {
                 "color": "00FFFF",
@@ -286,15 +286,16 @@
         "mem": 4000
       },
       "meta_parallel": {
-        "cpus_per_task": 1,
-        "mem": 4000
+        "cpus_per_task": 4,
+        "mem": 16000
       },
       "args_non_parallel": {
-        "overwrite": false,
+        "overwrite": true,
         "num_levels": 5,
+        "plate_name": "20200812-CardiomyocyteDifferentiation14-Cycle1",
         "acquisitions": {
           "6": {
-            "image_dir": "/path/to/23_well_plate_input/cycle4/images_renamed",
+            "image_dir": "/path/to/cycle4/images_renamed",
             "allowed_channels": [
               {
                 "color": "00FFFF",
@@ -335,7 +336,7 @@
             ]
           },
           "7": {
-            "image_dir": "/path/to/23_well_plate_input/cycle10/images_renamed",
+            "image_dir": "/path/to/cycle10/images_renamed",
             "allowed_channels": [
               {
                 "color": "00FFFF",
@@ -376,7 +377,7 @@
             ]
           },
           "8": {
-            "image_dir": "/path/to/23_well_plate_input/cycle11/images_renamed",
+            "image_dir": "/path/to/cycle11/images_renamed",
             "allowed_channels": [
               {
                 "color": "00FFFF",
@@ -417,7 +418,7 @@
             ]
           },
           "9": {
-            "image_dir": "/path/to/23_well_plate_input/cycle13/images_renamed",
+            "image_dir": "/path/to/cycle13/images_renamed",
             "allowed_channels": [
               {
                 "color": "00FFFF",
@@ -472,7 +473,7 @@
       "alias": "Conversion: Add multiplexing cycles 1",
       "task": {
         "pkg_name": "abbott",
-        "version": "0.3.6",
+        "version": "0.3.7",
         "name": "Convert Cellvoyager Multiplexing to existing OME-Zarr"
       }
     },
@@ -486,11 +487,12 @@
         "mem": 4000
       },
       "args_non_parallel": {
-        "overwrite": false,
+        "overwrite": true,
         "num_levels": 5,
+        "plate_name": "20200812-CardiomyocyteDifferentiation14-Cycle1",
         "acquisitions": {
           "10": {
-            "image_dir": "/path/to/23_well_plate_input/cycle14/images_renamed",
+            "image_dir": "/path/to/cycle14/images_renamed",
             "allowed_channels": [
               {
                 "color": "00FFFF",
@@ -531,7 +533,7 @@
             ]
           },
           "11": {
-            "image_dir": "/path/to/23_well_plate_input/cycle15/images_renamed",
+            "image_dir": "/path/to/cycle15/images_renamed",
             "allowed_channels": [
               {
                 "color": "00FFFF",
@@ -572,7 +574,7 @@
             ]
           },
           "12": {
-            "image_dir": "/path/to/23_well_plate_input/cycle16/images_renamed",
+            "image_dir": "/path/to/cycle16/images_renamed",
             "allowed_channels": [
               {
                 "color": "00FFFF",
@@ -613,7 +615,7 @@
             ]
           },
           "13": {
-            "image_dir": "/path/to/23_well_plate_input/cycle17/images_renamed",
+            "image_dir": "/path/to/cycle17/images_renamed",
             "allowed_channels": [
               {
                 "color": "00FFFF",
@@ -668,7 +670,7 @@
       "alias": "Conversion: Add multiplexing cycles 2",
       "task": {
         "pkg_name": "abbott",
-        "version": "0.3.6",
+        "version": "0.3.7",
         "name": "Convert Cellvoyager Multiplexing to existing OME-Zarr"
       }
     },
@@ -676,7 +678,7 @@
       "meta_non_parallel": null,
       "meta_parallel": {
         "cpus_per_task": 1,
-        "mem": 4000
+        "mem": 16000
       },
       "args_non_parallel": null,
       "args_parallel": {
@@ -689,7 +691,7 @@
           "A01_C02": "20220621_UZH_manual_illumcorr_40x_A01_C02.png",
           "A02_C03": "20220621_UZH_manual_illumcorr_40x_A02_C03.png"
         },
-        "illumination_profiles_folder": "/path/to/23_well_plate_input/illum_corr_images"
+        "illumination_profiles_folder": "/path/to/illum_corr_images"
       },
       "type_filters": {},
       "description": null,
@@ -715,7 +717,7 @@
         "use_masks": false,
         "wavelength_id": "A01_C01",
         "parameter_files": [
-          "/path/to/23_well_plate_input/registration_params/setting_search_14.txt"
+          "/path/to/registration_params/setting_search_14.txt"
         ],
         "skip_failed_rois": true,
         "lower_rescale_quantile": 0,
@@ -740,6 +742,7 @@
       "args_parallel": {
         "roi_table": "FOV_ROI_table",
         "use_masks": false,
+        "copy_labels": false,
         "overwrite_input": true,
         "output_image_suffix": "registered",
         "reference_acquisition": 0
@@ -749,7 +752,7 @@
       "alias": null,
       "task": {
         "pkg_name": "abbott",
-        "version": "0.3.5",
+        "version": "0.3.9",
         "name": "Apply Registration (elastix)"
       }
     },
@@ -905,8 +908,7 @@
       "meta_non_parallel": {},
       "meta_parallel": {
         "cpus_per_task": 1,
-        "mem": 16000,
-        "needs_gpu": true
+        "mem": 16000
       },
       "args_non_parallel": null,
       "args_parallel": {
@@ -930,15 +932,15 @@
       "alias": null,
       "task": {
         "pkg_name": "apx-fractal-task-collection",
-        "version": "0.4.11",
+        "version": "0.4.12",
         "name": "Measure Features"
       }
     },
     {
-      "meta_non_parallel": null,
+      "meta_non_parallel": {},
       "meta_parallel": {
         "cpus_per_task": 1,
-        "mem": 3750
+        "mem": 8000
       },
       "args_non_parallel": {},
       "args_parallel": {
@@ -960,13 +962,13 @@
       "meta_non_parallel": {},
       "meta_parallel": {
         "cpus_per_task": 1,
-        "mem": 8000
+        "mem": 12000
       },
       "args_non_parallel": null,
       "args_parallel": {
         "table_name": "nuclei_measurements_apx_aggregated",
         "classifier_name": "segmentation_qc",
-        "classifier_path": "/path/to/23_well_plate_input/classifiers/segmentation_qc_classifier.clf"
+        "classifier_path": "/path/to/classifiers/segmentation_qc_classifier.clf"
       },
       "type_filters": {},
       "description": "Only run on reference cycle: The reference cycle contains aggregated measurements",
@@ -981,13 +983,13 @@
       "meta_non_parallel": null,
       "meta_parallel": {
         "cpus_per_task": 1,
-        "mem": 8000
+        "mem": 12000
       },
       "args_non_parallel": null,
       "args_parallel": {
         "table_name": "nuclei_measurements_apx_aggregated",
         "classifier_name": "nanog_classifier",
-        "classifier_path": "/path/to/23_well_plate_input/classifiers/nanog_classifier.clf"
+        "classifier_path": "/path/to/classifiers/nanog_classifier.clf"
       },
       "type_filters": {},
       "description": "Only run on reference cycle: The reference cycle contains aggregated measurements",
@@ -1002,13 +1004,13 @@
       "meta_non_parallel": null,
       "meta_parallel": {
         "cpus_per_task": 1,
-        "mem": 8000
+        "mem": 12000
       },
       "args_non_parallel": null,
       "args_parallel": {
         "table_name": "nuclei_measurements_apx_aggregated",
         "classifier_name": "Sox17_classifier",
-        "classifier_path": "/path/to/23_well_plate_input/classifiers/Sox17_classifier.clf"
+        "classifier_path": "/path/to/classifiers/Sox17_classifier.clf"
       },
       "type_filters": {},
       "description": "Only run on reference cycle: The reference cycle contains aggregated measurements",
@@ -1023,13 +1025,13 @@
       "meta_non_parallel": null,
       "meta_parallel": {
         "cpus_per_task": 1,
-        "mem": 8000
+        "mem": 12000
       },
       "args_non_parallel": null,
       "args_parallel": {
         "table_name": "nuclei_measurements_apx_aggregated",
         "classifier_name": "NKX25_classifier",
-        "classifier_path": "/path/to/23_well_plate_input/classifiers/NKX25_classifier.clf"
+        "classifier_path": "/path/to/classifiers/NKX25_classifier.clf"
       },
       "type_filters": {},
       "description": "Only run on reference cycle: The reference cycle contains aggregated measurements",
@@ -1044,13 +1046,13 @@
       "meta_non_parallel": null,
       "meta_parallel": {
         "cpus_per_task": 1,
-        "mem": 8000
+        "mem": 12000
       },
       "args_non_parallel": null,
       "args_parallel": {
         "table_name": "nuclei_measurements_apx_aggregated",
         "classifier_name": "TroponinT_classifier",
-        "classifier_path": "/path/to/23_well_plate_input/classifiers/TroponinT_classifier.clf"
+        "classifier_path": "/path/to/classifiers/TroponinT_classifier.clf"
       },
       "type_filters": {},
       "description": "Only run on reference cycle: The reference cycle contains aggregated measurements",
