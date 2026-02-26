@@ -1,17 +1,17 @@
-
-from typing import Optional, Literal, Sequence
+from collections.abc import Sequence
+from typing import Literal
 
 import polars as pl
-
 from ngio.common._roi import Roi
 from ngio.hcs._plate import OmeZarrPlate
+
 
 def _unnest_renaming_expression(df: pl.DataFrame, col: str, sep: str = "-") -> pl.Expr:
     return pl.col(col).struct.rename_fields(
         [f"{col}{sep}{f.name}" for f in df.schema.get(col).fields]
     )
-    
-    
+
+
 def unnest_structs(
     df: pl.DataFrame, cols: str | Sequence[str], sep: str = "-"
 ) -> pl.DataFrame:
@@ -46,8 +46,8 @@ def to_tall(
     result = result.with_columns(pl.col("label").cast(pl.Int32)).sort(by=index_key)
     return result
 
-def get_ome_zarrs_filtered(ome_zarr_path_dict: dict, 
-                           zarr_ending: str = "_registered"):
+
+def get_ome_zarrs_filtered(ome_zarr_path_dict: dict, zarr_ending: str = "_registered"):
     """Filter ome-zarr path/container dict by zarr ending."""
     imgs_dict = {}
     for k, v in ome_zarr_path_dict.items():
@@ -56,31 +56,41 @@ def get_ome_zarrs_filtered(ome_zarr_path_dict: dict,
     return imgs_dict
 
 
-def open_image_by_channel_label(ome_plate: OmeZarrPlate,
-                                row: str,
-                                column: str,
-                                channel_label: str,
-                                path: str = "0",
-                                roi=Roi,
-                                zarr_ending: Optional[str] = None,
-                                masking_label_name: Optional[str] = None,
-                                masking_table_name: Optional[str] = None, 
-                                mode: Literal["numpy", "dask", "delayed"] = "numpy",
-                                ):
+def open_image_by_channel_label(
+    ome_plate: OmeZarrPlate,
+    row: str,
+    column: str,
+    channel_label: str,
+    path: str = "0",
+    roi=Roi,
+    zarr_ending: str | None = None,
+    masking_label_name: str | None = None,
+    masking_table_name: str | None = None,
+    mode: Literal["numpy", "dask", "delayed"] = "numpy",
+):
     for acq in ome_plate.acquisition_ids:
-        ome_zarr_dict = ome_plate.get_well_images(row=row, column=column, acquisition=acq)
+        ome_zarr_dict = ome_plate.get_well_images(
+            row=row, column=column, acquisition=acq
+        )
         if zarr_ending is not None:
-            ome_zarr_dict = get_ome_zarrs_filtered(ome_zarr_dict, zarr_ending=zarr_ending)
+            ome_zarr_dict = get_ome_zarrs_filtered(
+                ome_zarr_dict, zarr_ending=zarr_ending
+            )
         if not len(ome_zarr_dict) == 1:
-            return ValueError(f"Expected exactly one matching image for well {row}{column} "
-                              f"and acquisition {acq}ß, but found {len(ome_zarr_dict)}.")
+            return ValueError(
+                f"Expected exactly one matching image for well {row}{column} "
+                f"and acquisition {acq}ß, but found {len(ome_zarr_dict)}."
+            )
         ome_zarr = [*ome_zarr_dict.values()][0]
         channel_labels = ome_zarr.get_image(path=path).channel_labels
         if channel_label in channel_labels:
             c = channel_labels.index(channel_label)
             if masking_label_name is not None:
-                imgs = ome_zarr.get_masked_image(masking_label_name=masking_label_name, 
-                                                 masking_table_name=masking_table_name, path=path)
+                imgs = ome_zarr.get_masked_image(
+                    masking_label_name=masking_label_name,
+                    masking_table_name=masking_table_name,
+                    path=path,
+                )
                 img = imgs.get_roi_masked(label=int(roi.name), c=c, mode=mode)
             else:
                 imgs = ome_zarr.get_image(path=path)
