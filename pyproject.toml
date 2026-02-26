@@ -7,7 +7,10 @@ version_scheme = "post-release"
 [project]
 name = "fractal-paper-2026"
 description = "Fractal paper supplementary code"
-authors = [{ name = "Joel Luethi", email = "joel.luethi@uzh.ch" }]
+authors = [
+  { name = "Joel Luethi", email = "joel.luethi@uzh.ch" },
+  { name = "Fabio Steffen", email = "fabio.steffen@uzh.ch" },
+]
 dynamic = ["version"]
 classifiers = [
   "Programming Language :: Python :: 3",
@@ -29,6 +32,7 @@ dependencies = [
   "scipy",
   "tqdm",
   "ipywidgets",
+  "python-dotenv",
 ]
 
 [project.urls]
@@ -128,6 +132,21 @@ python = "3.12.*"
 [tool.pixi.feature.py313.dependencies]
 python = "3.13.*"
 
+[tool.pixi.feature.r.dependencies]
+r-base = ">=4.3"
+quarto = ">=1.4"
+r-knitr = "*"
+r-rmarkdown = "*"
+r-here = "*"
+r-readr = "*"
+r-ggplot2 = "*"
+r-ggpubr = "*"
+r-scales = "*"
+r-forcats = "*"
+
+[tool.pixi.feature.r.tasks]
+render-drp = { cmd = "quarto render fractal_paper_2026/drp_analysis/Fig_DRP.qmd", description = "Render the Drug Response Profiling figure" }
+
 [tool.pixi.environments]
 default = ["test"]
 py311 = ["py311", "test"]
@@ -135,6 +154,7 @@ py312 = ["py312", "test"]
 py313 = ["py313", "test"]
 build = ["build"]
 lint = { features = ["lint"], no-default-feature = true }
+drp-analysis = { features = ["r"], no-default-feature = true }
 
 [tool.pixi.pypi-dependencies]
 fractal-paper-2026 = { path = ".", editable = true }
