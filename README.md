@@ -30,3 +30,18 @@ pixi run postinstall
 ```bash
 pixi run -e drp-analysis render-drp
 ```
+
+### Light sheet analysis
+
+Scripts in `fractal_paper_2026/light_sheet_analysis/` require napari and a different version of `ngio` than the default environment. These dependencies are managed in a separate pixi environment:
+
+```bash
+pixi shell -e light-sheet-analysis
+python fractal_paper_2026/light_sheet_analysis/figure6_BC.py
+```
+
+Or run a script directly without activating the shell:
+
+```bash
+pixi run -e light-sheet-analysis python fractal_paper_2026/light_sheet_analysis/figure6_BC.py
+```

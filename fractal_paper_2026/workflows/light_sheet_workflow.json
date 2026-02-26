@@ -1,0 +1,126 @@
+{
+  "name": "lightsheet-analysis",
+  "description": null,
+  "task_list": [
+    {
+      "meta_non_parallel": {
+        "cpus_per_task": 1,
+        "mem": 2000
+      },
+      "meta_parallel": null,
+      "args_non_parallel": {
+        "overwrite": false,
+        "zarr_name": "data.zarr",
+        "grid_x_shape": 2,
+        "grid_y_shape": 2,
+        "add_grid_ROI_table": false,
+        "add_image_ROI_table": false,
+        "update_omero_metadata": false
+      },
+      "args_parallel": null,
+      "type_filters": {},
+      "description": null,
+      "alias": null,
+      "task": {
+        "pkg_name": "fractal-tasks-core",
+        "version": "1.5.6",
+        "name": "Import OME-Zarr"
+      }
+    },
+    {
+      "meta_non_parallel": {},
+      "meta_parallel": {
+        "cpus_per_task": 4,
+        "mem": 16000,
+        "needs_gpu": true
+      },
+      "args_non_parallel": null,
+      "args_parallel": {
+        "channels": {
+          "mode": "label",
+          "identifiers": [
+            "H2B"
+          ]
+        },
+        "overwrite": true,
+        "label_name": "nuclei_sam",
+        "level_path": "1",
+        "pre_post_process": {
+          "post_process": [
+            {
+              "type": "size_filter",
+              "min_size": 20
+            }
+          ]
+        },
+        "advanced_parameters": {
+          "bsize": 256,
+          "invert": false,
+          "augment": false,
+          "verbose": false,
+          "min_size": 15,
+          "resample": true,
+          "batch_size": 8,
+          "tile_overlap": 0.1,
+          "flow3D_smooth": 2,
+          "normalization": {
+            "axis": -1,
+            "mode": "custom",
+            "invert": false,
+            "norm3D": false,
+            "lowhigh": [
+              100,
+              1000
+            ],
+            "normalize": true,
+            "percentile": [
+              1,
+              99
+            ],
+            "use_lowhigh": true,
+            "smooth_radius": 0,
+            "sharpen_radius": 0,
+            "tile_norm_smooth3D": 1,
+            "tile_norm_blocksize": 0
+          },
+          "flow_threshold": 0.4,
+          "stitch_threshold": 0,
+          "max_size_fraction": 0.4,
+          "cellprob_threshold": 1
+        },
+        "iterator_configuration": {
+          "roi_table": "organoid_bounding_boxes"
+        }
+      },
+      "type_filters": {},
+      "description": null,
+      "alias": null,
+      "task": {
+        "pkg_name": "fractal-cellpose-sam-task",
+        "version": "0.1.7",
+        "name": "Cellpose SAM Segmentation"
+      }
+    },
+    {
+      "meta_non_parallel": {},
+      "meta_parallel": {
+        "cpus_per_task": 1,
+        "mem": 4000
+      },
+      "args_non_parallel": null,
+      "args_parallel": {
+        "overwrite": true,
+        "label_image_name": "nuclei_sam",
+        "output_table_name": "region_props_features"
+      },
+      "type_filters": {},
+      "description": null,
+      "alias": null,
+      "task": {
+        "pkg_name": "fractal-tasks-template",
+        "version": "0.6.4",
+        "name": "Region Props Features"
+      }
+    }
+  ]
+}
