@@ -13,7 +13,7 @@ SPATIAL_DIMS = ["z", "y", "x"]
 
 def main():
     ZARR_PATH = "path/to/ome/zarr"
-    OUTPUT_PATH = "output"
+    OUTPUT_PATH = "fractal_paper_2026/light_sheet_analysis/figs"
     TABLE_NAME = "organoid_bounding_boxes"
     LEVEL = 1
     SHIFT = 0.0

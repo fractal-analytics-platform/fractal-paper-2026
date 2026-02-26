@@ -152,6 +152,19 @@ r-forcats = "*"
 [tool.pixi.feature.r.tasks]
 render-drp = { cmd = "quarto render fractal_paper_2026/drp_analysis/Fig_DRP.qmd", description = "Render the Drug Response Profiling figure" }
 
+[tool.pixi.feature.light-sheet.dependencies]
+python = ">=3.11, <3.14"
+napari = "*"
+pyqt6 = "*"
+polars = "*"
+numpy = "*"
+anndata = ">=0.12"
+seaborn = "*"
+dask = "<2025.11.0"      # Needed here because ngio 0.5.0b5 depends on dask<2025.11.0
+
+[tool.pixi.feature.light-sheet.pypi-dependencies]
+ngio = "==0.5.0b5"
+
 [tool.pixi.environments]
 default = ["test"]
 py311 = ["py311", "test"]
@@ -160,6 +173,7 @@ py313 = ["py313", "test"]
 build = ["build"]
 lint = { features = ["lint"], no-default-feature = true }
 drp-analysis = { features = ["r"], no-default-feature = true }
+light-sheet-analysis = { features = ["light-sheet"], no-default-feature = true }
 
 [tool.pixi.pypi-dependencies]
 fractal-paper-2026 = { path = ".", editable = true }
