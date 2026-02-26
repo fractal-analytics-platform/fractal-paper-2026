@@ -9,6 +9,7 @@ name = "fractal-paper-2026"
 description = "Fractal paper supplementary code"
 authors = [
   { name = "Joel Luethi", email = "joel.luethi@uzh.ch" },
+  { name = "Ruth Hornbachner", email = "ruth.hornbachner@uzh.ch" },
   { name = "Fabio Steffen", email = "fabio.steffen@uzh.ch" },
 ]
 dynamic = ["version"]
@@ -32,6 +33,8 @@ dependencies = [
   "scipy",
   "tqdm",
   "ipywidgets",
+  "napari[all]",
+  "scanpy",
   "python-dotenv",
 ]
 
@@ -90,6 +93,8 @@ python = ">=3.11, <3.14"
 pip = "*"
 setuptools = ">=61"
 setuptools-scm = "*"
+ipykernel = ">=7.2.0,<8"
+pillow = ">=12.1.1,<13"
 
 [tool.pixi.tasks]
 postinstall = "pip install --no-build-isolation --no-deps --disable-pip-version-check -e ."
