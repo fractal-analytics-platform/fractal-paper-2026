@@ -469,7 +469,7 @@
       },
       "type_filters": {},
       "description": null,
-      "alias": null,
+      "alias": "Ilastik Embryo Classification Segmentation",
       "task": {
         "pkg_name": "ilastik-tasks",
         "version": "0.3.3",
@@ -524,7 +524,7 @@
       },
       "type_filters": {},
       "description": null,
-      "alias": null,
+      "alias": "Cellpose Nuclei Segmentation",
       "task": {
         "pkg_name": "fractal-tasks-core",
         "version": "1.5.5",
@@ -556,36 +556,42 @@
     {
       "meta_non_parallel": null,
       "meta_parallel": {
-        "cpus_per_task": 16,
-        "mem": 60000
+        "cpus_per_task": 32,
+        "mem": 120000
       },
       "args_non_parallel": null,
       "args_parallel": {
-        "level": 1,
-        "channel": {
-          "label": "ECadherin",
-          "normalize": {
-            "norm_type": "no_normalization"
-          }
+        "channels": {
+          "mode": "label",
+          "identifiers": [
+            "ECadherin"
+          ],
+          "skip_if_missing": true
         },
         "overwrite": true,
-        "use_masks": true,
         "label_name": "nuclei_upsampled",
-        "relabeling": false,
-        "input_ROI_table": "embryo_ROI_table",
+        "level_path": "1",
         "output_label_name": "cells",
-        "advanced_model_params": {
-          "compactness": 5,
-          "filter_radius": 2
+        "advanced_parameters": {
+          "compactness": 5
+        },
+        "iterator_configuration": {
+          "masking": {
+            "mode": "Label Name",
+            "identifier": "embryo"
+          }
+        },
+        "create_masking_roi_table": {
+          "mode": "Skip Creating Masking ROI Table"
         }
       },
       "type_filters": {},
       "description": null,
-      "alias": null,
+      "alias": "Seeded Watershed Cell Segmentation",
       "task": {
-        "pkg_name": "abbott",
-        "version": "0.1.0",
-        "name": "Seeded Segmentation"
+        "pkg_name": "abbott-segmentation-tasks",
+        "version": "0.4.1",
+        "name": "Seeded Watershed Segmentation"
       }
     },
     {
