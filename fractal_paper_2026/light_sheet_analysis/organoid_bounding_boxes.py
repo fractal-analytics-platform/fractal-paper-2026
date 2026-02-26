@@ -11,7 +11,7 @@ from ngio.tables import RoiTable
 
 
 def main():
-    ZARR_PATH = r"W:\scratch\gliberal\Users\hessmax\fractal\497_light_sheet_data_processing\2462_ls1_002\data.zarr"
+    ZARR_PATH = "path/to/ome/zarr"
     TABLE_NAME = "organoid_bounding_boxes"
     TABLE_NAME_FULL_VIEWS = "organoid_frames"
     LEVEL = 3

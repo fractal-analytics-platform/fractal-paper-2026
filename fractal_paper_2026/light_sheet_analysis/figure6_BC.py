@@ -12,8 +12,8 @@ SPATIAL_DIMS = ["z", "y", "x"]
 
 
 def main():
-    ZARR_PATH = r"W:\scratch\gliberal\Users\hessmax\fractal\497_light_sheet_data_processing\2462_ls1_002\data.zarr"
-    OUTPUT = "../../output"
+    ZARR_PATH = "path/to/ome/zarr"
+    OUTPUT_PATH = "output"
     TABLE_NAME = "organoid_bounding_boxes"
     LEVEL = 1
     SHIFT = 0.0
@@ -55,6 +55,7 @@ def main():
     lbls = [lbl_img.get_roi(roi) for roi in tbl_rois.rois()]
     pixel_size = img.dimensions.pixel_size
 
+    Path(OUTPUT_PATH).mkdir(exist_ok=True)
     if IS_2D:
         print("Visualize 2D in napari...")
         viewer = napari.Viewer(show=True)
@@ -79,7 +80,7 @@ def main():
 
         # 2D screenshot with labels
         screenshot_2d_labels_path = (
-            Path(OUTPUT) / f"n{len(df_rois):02d}_timecourse_2d_with_labels.png"
+            Path(OUTPUT_PATH) / f"n{len(df_rois):02d}_timecourse_2d_with_labels.png"
         )
         if screenshot_2d_labels_path.exists():
             screenshot_2d_labels_path.unlink()
@@ -98,7 +99,9 @@ def main():
             if layer._type_string == "labels":
                 layer.visible = False
 
-        screenshot_2d_path = Path(OUTPUT) / f"n{len(df_rois):02d}_timecourse_2d.png"
+        screenshot_2d_path = (
+            Path(OUTPUT_PATH) / f"n{len(df_rois):02d}_timecourse_2d.png"
+        )
         if screenshot_2d_path.exists():
             screenshot_2d_path.unlink()
         screenshot_2d = viewer.screenshot(screenshot_2d_path)
@@ -140,7 +143,7 @@ def main():
         )
         # 3D screenshots with labels
         screenshot_3d_labels_path = (
-            Path(OUTPUT) / f"n{len(df_rois):02d}_timecourse_3d_with_labels.png"
+            Path(OUTPUT_PATH) / f"n{len(df_rois):02d}_timecourse_3d_with_labels.png"
         )
         if screenshot_3d_labels_path.exists():
             screenshot_3d_labels_path.unlink()
@@ -158,7 +161,9 @@ def main():
         for layer in viewer.layers:
             if layer._type_string == "labels":
                 layer.visible = False
-        screenshot_3d_path = Path(OUTPUT) / f"n{len(df_rois):02d}_timecourse_3d.png"
+        screenshot_3d_path = (
+            Path(OUTPUT_PATH) / f"n{len(df_rois):02d}_timecourse_3d.png"
+        )
         if screenshot_3d_path.exists():
             screenshot_3d_path.unlink()
 
@@ -177,7 +182,7 @@ def main():
             elif layer._type_string == "image":
                 layer.visible = False
         screenshot_3d_only_labels_path = (
-            Path(OUTPUT) / f"n{len(df_rois):02d}_timecourse_3d_only_labels.png"
+            Path(OUTPUT_PATH) / f"n{len(df_rois):02d}_timecourse_3d_only_labels.png"
         )
         if screenshot_3d_only_labels_path.exists():
             screenshot_3d_only_labels_path.unlink()
@@ -202,7 +207,7 @@ def main():
 
         settings.appearance.theme = "light"
         screenshot_3d_only_labels_path = (
-            Path(OUTPUT) / f"n{len(df_rois):02d}_timecourse_3d_only_labels_wbg.png"
+            Path(OUTPUT_PATH) / f"n{len(df_rois):02d}_timecourse_3d_only_labels_wbg.png"
         )
         if screenshot_3d_only_labels_path.exists():
             screenshot_3d_only_labels_path.unlink()

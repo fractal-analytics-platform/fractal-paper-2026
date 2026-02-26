@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import matplotlib.pyplot as plt
 import ngio
 import numpy as np
@@ -6,8 +8,9 @@ import seaborn as sns
 
 
 def main():
-    ZARR_PATH = r"W:\scratch\gliberal\Users\hessmax\fractal\497_light_sheet_data_processing\2462_ls1_002\data.zarr"
+    ZARR_PATH = "path/to/ome/zarr"
     EVERY_NTH = 50
+    Path("output").mkdir(exist_ok=True)
 
     container = ngio.open_ome_zarr_container(ZARR_PATH)
     df_rois = (
@@ -43,7 +46,7 @@ def main():
     for row in df_rois[::EVERY_NTH].iter_rows(named=True):
         ax.axvline(row["t_hour"], color="0.5", lw=0.7, ls="dotted")
     plt.tight_layout()
-    fig.savefig("../../output/panelA.png")
+    fig.savefig("output/panelA.png")
 
     fig, ax = plt.subplots(figsize=(3.5, 2.6), dpi=300)
     sns.scatterplot(
@@ -78,7 +81,7 @@ def main():
         ax.axvline(row["t_hour"], color="0.5", lw=0.7, ls="dotted")
 
     plt.tight_layout()
-    fig.savefig("../../output/panelB.png")
+    fig.savefig("output/panelB.png")
 
 
 def stratified_sample(by: str, n: int, seed: int | None = None) -> pl.Expr:
